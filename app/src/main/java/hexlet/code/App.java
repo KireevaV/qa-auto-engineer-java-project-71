@@ -15,16 +15,18 @@ public class App implements Runnable {
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     private boolean version;
 
-    @Parameters(index = "0", description = "Path to first file", arity = "0..1")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
+    private String format;
+
+    @Parameters(index = "0", description = "path to first file")
     private String filePath1;
 
-    @Parameters(index = "1", description = "Path to second file", arity = "0..1")
+    @Parameters(index = "1", description = "path to second file")
     private String filePath2;
 
     @Override
     public void run() {
-        // Пока заглушка, позже здесь будет логика сравнения
-        String result = Differ.generate(filePath1, filePath2);
+        String result = Differ.generate(filePath1, filePath2, format);
         System.out.println(result);
     }
 
@@ -34,4 +36,5 @@ public class App implements Runnable {
         System.exit(exitCode);
     }
 }
+
 
